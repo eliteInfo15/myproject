@@ -1,0 +1,56 @@
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@localhost/dbname'
+db = SQLAlchemy(app)
+from functools import wraps
+
+class students(db.Model):
+   id = db.Column('student_id', db.Integer, primary_key = True)
+   name = db.Column(db.String(100))
+   city = db.Column(db.String(50))
+   addr = db.Column(db.String(200))
+   pin = db.Column(db.String(10))
+
+   def __init__(self, name, city, addr,pin):
+   self.name = name
+   self.city = city
+   self.addr = addr
+   self.pin = pin
+
+db.create_all()
+for crud use session object
+db.session.add(object)
+db.session.commit()
+db.session.delete(object)
+modelName.query.all()
+modelname.query.filter_by(attr = value).all()
+modelname.query.filter_by(attr = value).first()
+modelname.query.filter(or_(attr==value, attr=value)).all()
+
+admin = modelname.query.filter_by(attr=value).update(dict(attr=new value, attr=new value)))
+
+headers={"content-type":["application/json",]}
+token=jwt.encode({'attr':value,'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=30)},app.config['SECRET_KEY'])
+
+
+encode(payload,sec)
+functools import wraps
+def token_required(f):
+    @wraps(f)
+    def decorated(*args,**kwargs):
+        token= request.form["token"]
+        if not token:
+            return jsonify({'status':'token missing'}),403
+        try:
+            jwt.decode(token,app.config['SECRET_KEY'])
+        except:
+            return jsonify({'staus':'token is invalid'}),403
+        return f(*args,**kwargs)
+    return decorated
+
+@token_required
+
+@token_required 
+
+
+
+
+
